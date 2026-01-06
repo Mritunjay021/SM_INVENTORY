@@ -13,7 +13,7 @@ connectDB();
 const cleanupInventory=async()=>{
     setInterval(async () => {
     try {
-      await cleanupExpiredReservations();
+      await cleanupExpired();
       console.log("Expired reservations cleaned up");
     } catch (error) {
       console.error("Cleanup failed:", error.message);

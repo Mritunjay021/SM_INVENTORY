@@ -54,7 +54,7 @@ export const reserveInventory = async (req, res) => {
       });
     }
 
-    const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+    const expiresAt = new Date(Date.now() + 0.5 * 60 * 1000);
 
     const reservation = await Reservation.create({
       reservationId: uuidv4(),
