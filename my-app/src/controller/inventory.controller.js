@@ -82,7 +82,7 @@ export const reserveInventory = async (req, res) => {
 };
 
 
-export const getinventoryBysku = async(re,res)=>{
+export const getinventoryBysku = async(req,res)=>{
     const {sku} = req.params;
 
     try{
