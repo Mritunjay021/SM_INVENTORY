@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post('/confirm',confirmcheckout);
 router.post('/cancel',cancelcheckout);
-router.post('/cart',getActiveCart);
+router.get('/cart',getActiveCart);
 
 export default router;

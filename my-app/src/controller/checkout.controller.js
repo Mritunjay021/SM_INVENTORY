@@ -92,7 +92,7 @@ export const cancelcheckout = async(req,res)=>{
 }
 
 export const getActiveCart = async(req,res)=>{
-    const {userId} = req.params;
+    const {userId} = req.query;
 
     try{
         const reservation = await Reservation.findOne({
@@ -101,7 +101,7 @@ export const getActiveCart = async(req,res)=>{
         });
 
         if(!reservation){
-            return resjson({
+            return res.json({
                 success:true,
                 cart:null
             });
