@@ -22,13 +22,5 @@ const inventorySchema = new mongoose.Schema({
   { timestamps: true }
 );
 
-inventorySchema.pre('save',function(next){
-    if(this.reservedStock > this.totalStock){
-        return next(new Error("Reserved stock cannot exceed total stock"));
-    }
-    next();
-})
-
-
 const Inventory = mongoose.model("Inventory", inventorySchema);
 export default Inventory;

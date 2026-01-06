@@ -1,5 +1,5 @@
-import Reservation from "../models/reservation";
-import Inventory from "../models/inventory";
+import Reservation from "../models/reservation.js";
+import Inventory from "../models/inventory.js";
 
 export const cleanupExpired = async ()=>{
     const now = new Date();

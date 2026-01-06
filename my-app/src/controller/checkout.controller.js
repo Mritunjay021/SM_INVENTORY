@@ -1,11 +1,11 @@
-import Inventory from "../models/inventory";
-import Reservation from "../models/reservation";
+import Inventory from "../models/inventory.js";
+import Reservation from "../models/reservation.js";
 
 export const confirmcheckout = async(req,res)=>{
     const {reservationid} = req.body;
 
     try{
-        const reservation = await Reservation.findOne({ reservationId });
+        const reservation = await Reservation.findOne({ reservationid });
 
     if (!reservation) {
       return res.status(404).json({
@@ -48,7 +48,7 @@ export const cancelcheckout = async(req,res)=>{
     const  {reservationid} = req.body;
 
     try{
-        const reservation = await Reservation.findOne({reservationId});
+        const reservation = await Reservation.findOne({reservationid});
 
         if (!reservation) {
       return res.status(404).json({
@@ -84,6 +84,40 @@ export const cancelcheckout = async(req,res)=>{
       message: "Checkout cancelled and inventory released"
     });
     }catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+}
+
+export const getActiveCart = async(req,res)=>{
+    const {userId} = req.params;
+
+    try{
+        const reservation = await Reservation.findOne({
+            userId,
+            status:"ACTIVE"
+        });
+
+        if(!reservation){
+            return resjson({
+                success:true,
+                cart:null
+            });
+        }
+
+        return res.json({
+      success: true,
+      cart: {
+        reservationId: reservation.reservationId,
+        sku: reservation.sku,
+        quantity: reservation.quantity,
+        expiresAt: reservation.expiresAt
+      }
+    });
+    }
+    catch (error) {
     return res.status(500).json({
       success: false,
       message: error.message
