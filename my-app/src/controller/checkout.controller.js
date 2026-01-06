@@ -22,7 +22,7 @@ export const confirmcheckout = async(req,res)=>{
     }
 
     if (reservation.status !== "ACTIVE") {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: `Cannot confirm reservation in ${reservation.status} state`
       });
